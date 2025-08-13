@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start": "node -r dotenv/config dist/server.js",
     "dev": "nodemon --exec node -r dotenv/config --loader ts-node/esm src/server.ts",
     "test": "jest"
