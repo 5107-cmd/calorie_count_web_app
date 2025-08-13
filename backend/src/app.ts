@@ -9,8 +9,25 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://caloriecountwebapp.netlify.app',
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+}));
+
 app.use(express.json());
+
 app.use(rateLimit({
   windowMs: config.rateLimitWindowMs,
   max: config.rateLimitMax,
@@ -18,7 +35,7 @@ app.use(rateLimit({
 }));
 
 app.get('/', (req, res) => {
-res.send('Server is up!');
+  res.send('Server is up!');
 });
 
 connectDb().then(() => setupUsers());
