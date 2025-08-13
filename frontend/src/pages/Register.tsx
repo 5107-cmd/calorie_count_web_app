@@ -15,7 +15,7 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:8000/auth/register', {
+      await axios.post(`https://calorie-count-web-app.onrender.com/auth/register`, {
         first_name: form.firstName,
         last_name: form.lastName,
         email: form.email,

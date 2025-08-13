@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:8000/auth/login', form);
+      const res = await axios.post(`https://calorie-count-web-app.onrender.com/auth/login`, form);
       localStorage.setItem('token', res.data.token);
       setError('');
       navigate('/calories');

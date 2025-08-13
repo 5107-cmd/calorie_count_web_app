@@ -36,7 +36,7 @@ export default function Calories() {
     try {
       const token = localStorage.getItem('token');
       if (!token) throw new Error('Please login');
-      const res = await axios.post('http://localhost:8000/get-calories', {
+      const res = await axios.post(`https://calorie-count-web-app.onrender.com/get-calories`, {
         dish_name: form.dishName,
         servings: parseFloat(form.servings),
       }, {
