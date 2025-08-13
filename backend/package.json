@@ -1,0 +1,42 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config dist/server.js",
+    "dev": "nodemon --exec node -r dotenv/config --loader ts-node/esm src/server.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@types/supertest": "^6.0.3",
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "supertest": "^7.1.4"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.2.1",
+    "@types/pg": "^8.15.5",
+    "jest": "^30.0.5",
+    "nodemon": "^3.1.10",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "type": "module"
+}

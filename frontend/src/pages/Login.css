@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login-container {
+  @apply min-h-screen flex items-center justify-center relative p-4 sm:p-6 lg:p-8;
+}
+
+.login-form-container {
+  @apply bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg w-full max-w-md;
+}
+
+.login-heading {
+  @apply text-2xl font-bold mb-6 text-center text-primary dark:text-purple-200;
+}
+
+.login-error {
+  @apply mt-4 text-center text-error;
+}
+
+.login-link {
+  @apply mt-4 text-center;
+}
