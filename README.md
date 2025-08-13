@@ -86,28 +86,6 @@ calorie_count_web_app/
    npm install
    ```
 
-4. **Set Up Environment Variables**:
-   - Frontend: Create `frontend/.env` and `frontend/.env.production`:
-     ```
-     VITE_API_URL=http://localhost:8000
-     ```
-     For production:
-     ```
-     VITE_API_URL=https://your-heroku-app.herokuapp.com
-     ```
-   - Backend: Copy `backend/.env.example` to `backend/.env`:
-     ```bash
-     cp backend/.env.example backend/.env
-     ```
-     Update `backend/.env`:
-     ```
-     JWT_SECRET=your_jwt_secret
-     NUTRITION_API_KEY=your_nutrition_api_key
-     RATE_LIMIT_REQUESTS=100
-     RATE_LIMIT_WINDOW_MS=900000
-     PORT=8080
-     ```
-
 ## Running Locally
 1. **Run Frontend**:
    ```bash
@@ -129,87 +107,4 @@ calorie_count_web_app/
    cd frontend
    npm test
    ```
-   Tests are in `frontend/__tests__/Calories.test.tsx`, covering form submission, previous meals, unauthorized requests, and logout.
-
-2. **Backend Tests**:
-   ```bash
-   cd backend
-   npm test
-   ```
-   Tests are in `backend/__tests__/api.test.ts`, covering calorie requests, fuzzy matching, rate limiting, and authentication.
-
-## Deployment
-### Frontend (Vercel)
-1. Install Vercel CLI:
-   ```bash
-   npm install -g vercel
-   ```
-
-2. Deploy:
-   ```bash
-   cd frontend
-   vercel
-   ```
-   - Set root to `frontend/`.
-   - Build command: `npm run build`.
-   - Output directory: `dist`.
-   - Add `VITE_API_URL=https://your-heroku-app.herokuapp.com`.
-
-3. Test at the Vercel URL (e.g., `https://your-app.vercel.app`).
-
-### Backend (Heroku)
-1. Install Heroku CLI:
-   ```bash
-   npm install -g heroku
-   ```
-
-2. Create Heroku App:
-   ```bash
-   cd backend
-   heroku create your-heroku-app
-   ```
-
-3. Set Environment Variables:
-   ```bash
-   heroku config:set JWT_SECRET=your_jwt_secret
-   heroku config:set NUTRITION_API_KEY=your_nutrition_api_key
-   heroku config:set RATE_LIMIT_REQUESTS=100
-   heroku config:set RATE_LIMIT_WINDOW_MS=900000
-   heroku config:set PORT=8080
-   ```
-
-4. Deploy:
-   ```bash
-   git add .
-   git commit -m "Deploy backend"
-   heroku git:remote -a your-heroku-app
-   git push heroku main
-   ```
-
-5. Test API:
-   ```bash
-   curl -X POST https://your-heroku-app.herokuapp.com/auth/register -H "Content-Type: application/json" -d '{"first_name":"Test","last_name":"User","email":"test@example.com","password":"password123"}'
-   ```
-
-### Connect Frontend and Backend
-1. Update `VITE_API_URL` in Vercel:
-   ```bash
-   vercel env add VITE_API_URL production
-   ```
-   Enter: `https://your-heroku-app.herokuapp.com`
-
-2. Add CORS to `backend/src/app.ts`:
-   ```typescript
-   app.use(cors({ origin: 'https://your-app.vercel.app' }));
-   ```
-
-## Troubleshooting
-- **Frontend Issues**:
-  - Verify `VITE_API_URL` matches the Heroku URL.
-  - Check browser console for CORS or API errors.
-- **Backend Issues**:
-  - View logs: `heroku logs --tail`.
-  - Ensure `dist/` is generated (`npm run build`).
-- **Tests Failing**:
-  - Run `npm test` in `frontend/` and `backend/` to debug.
-  - Check `Calories.tsx` and `ctrl.ts` for expected behavior.
+   Tests are in `frontend/__tests__/Calories.test.tsx`.
